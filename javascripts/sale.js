@@ -1,15 +1,47 @@
 const priceElement = document.getElementById("product");
 const numberElement = document.getElementById("number");
+const product = document.getElementById("products");
 let purchases = [];
+
+// (表示する金額・id・商品名の内容を追加)①追加ボタンをクリックした時に、商品名も表示する。（金額、数量、商品名を表示）
+
+const products = [
+    {
+        id: 1,
+        name: "オリジナルブレンド200g 500円",
+        price: 500        
+    },
+    {
+        id: 2,
+        name: "オリジナルブレンド500g 900円",
+        price: 900      
+    },
+    {
+        id: 3,
+        name: "スペシャルブレンド200g 700円",
+        price: 700        
+    },
+    {
+        id: 4,
+        name: "スペシャルブレンド500g 1200円",
+        price: 1200        
+    }
+]
 
 function add() {
     const price = parseInt(priceElement.value);
     const number = parseInt(numberElement.value);
+    const product = parseInt(products.value);
     let purchase = {
         price: price,
         number: number,
+        product: product,
     };
+
+
+
     // 以下を変更
+
 
     let newPurchase = true; //--1
 
@@ -28,10 +60,11 @@ function add() {
             }
         }
     }
-
+    // 追加ボタンをクリックした時に、商品名も表示する。（金額、数量、商品名を表示）
     window.alert(`${display()}\n小計${subtotal()}円`);
     priceElement.value = "";
     numberElement.value = "";
+    products.value = "";    
 }
 
 // 購入履歴の内容の文字列（「○○が○点、○○が○点」）を返す関数、display()関数
@@ -49,7 +82,7 @@ function subtotal() {
     let sum = 0;
     // 合計を算出する処理
     for(let i=0; i<purchases.length; i++){
-        sum += purchases[i].price * purchases[i] * number ;
+        sum += purchases[i].price * purchases[i].number ;
 }
  return sum;
 }
