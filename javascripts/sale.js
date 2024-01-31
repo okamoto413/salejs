@@ -1,6 +1,6 @@
 const priceElement = document.getElementById("product");
 const numberElement = document.getElementById("number");
-const product = document.getElementById("products");
+const product = document.getElementById("product");
 let purchases = [];
 
 // (表示する金額・id・商品名の内容を追加)①追加ボタンをクリックした時に、商品名も表示する。（金額、数量、商品名を表示）
@@ -31,11 +31,11 @@ const products = [
 function add() {
     const price = parseInt(priceElement.value);
     const number = parseInt(numberElement.value);
-    const product = parseInt(products.value);
+    const selectedProduct=products[product.selectedIndex -1]
     let purchase = {
         price: price,
         number: number,
-        product: product,
+        product: selectedProduct,
     };
 
 
@@ -67,12 +67,12 @@ function add() {
     products.value = "";    
 }
 
-// 購入履歴の内容の文字列（「○○が○点、○○が○点」）を返す関数、display()関数
+// 購入履歴の内容の文字列（「（商品名）+○○円が○点、」）を返す関数、display()関数
 function display() {
     let string = "";
     // 合計を算出する処理
     for (let i = 0; i < purchases.length; i++) {
-        string += `${purchases[i].price}円が${purchases[i].number}点\n`;
+        string += `${purchases[i].product.name}が${purchases[i].number}点\n`;
     }
     return string;
 }
