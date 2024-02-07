@@ -86,6 +86,7 @@ function subtotal() {
 function calc() {
     const sum = subtotal();
     const postage = calcPostageFromPurchase(sum)
+    // stringは別のオブジェクトなので利用できないので、別（meessage）で同じ内容を作る。
     let message = "";
  
     for (let i = 0; i < purchases.length; i++) {
